@@ -1,0 +1,117 @@
+<div>
+    <mat-card>
+
+        <mat-card-content>
+
+            <table class="card-table">
+                <tr>
+                    <td>
+                        <b>Property:</b> {{realEstateAddress}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Minimum bid amount:</b> {{minBid}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Benficiary for the bid is:</b> {{beneficaryAddress}}
+                    </td>
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card class="card-class">
+    <table class="card-table">
+       
+        <tr>
+            <td>
+                <mat-form-field>
+                    <mat-select placeholder="Select User Type" [(value)]="userType" (selectionChange)="updateUser()">
+                        <mat-option>None</mat-option>
+                        <mat-option value="manager">Bid Manager</mat-option>
+                        <mat-option value="bidder">Bidder</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+
+    </table>
+</mat-card >
+    <div *ngIf="userType === 'manager'">
+        <mat-card class="card-class">
+            <mat-card-title>Manage Bid</mat-card-title>
+            <mat-card-content>
+            </mat-card-content>
+            <table class="card-table">
+                <div>
+                    <button mat-raised-button color="accent" (click)='endBid()'>End Bid</button>
+                    End bidding phase, start revealing !
+                </div>
+                <div>
+                    <button mat-raised-button color="accent" (click)='endAuction()'>End Auction</button>
+                    End auction, time up for revealing !
+                </div>
+                <div>
+                    <div *ngIf="!winnerAddress">
+                        <button mat-raised-button color="accent" (click)='getWinner()'>Who is the winner?</button>
+                    </div>
+
+                    <div *ngIf="winnerAddress">
+                        <button mat-raised-button color="accent" (click)='getWinner()'>Who is the winner?</button>
+                        And the winner is {{winnerAddress}}, bid amount {{winningBid}}
+                    </div>
+
+
+                </div>
+
+
+            </table>
+
+
+
+        </mat-card>
+    </div>
+
+    <div *ngIf="userType === 'bidder'">
+        <mat-card class="card-class">
+            <mat-card-title>Bid</mat-card-title>
+            <mat-card-content>
+
+                <table class="card-table">
+                    <tr>
+                        <td>
+                            <mat-form-field class="full-width">
+                                <input type="text" matInput id="bidAmount" placeholder="Bid Amount(Dollars)" #bidAmount />
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="full-width">
+                                <input type="text" matInput id="depositAmount" placeholder="Deposit Amount(Ether)"
+                                    #depositAmount />
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="full-width">
+                                <input type="text" matInput id="secret" placeholder="Secret" #secret />
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <button mat-raised-button color="accent"
+                                (click)='bid(bidAmount, depositAmount, secret)'>Bid</button>
+                        </td>
+                        <td>
+                            <button mat-raised-button color="accent" (click)='reveal(bidAmount, secret)'>Reveal</button>
+                        </td>
+                    </tr>
+                </table>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>
