@@ -1,7 +1,7 @@
 # Fair Real Estate Bid Dapp
 This is an Ethereum Dapp for document Fair Real Estate Bid. The dapp suppports two actors - Bid manager, Bidder.
 Bid Manager is some one who is enabling to sell the house and Bidder is the one who wants to own the house.
-Details at : Medium link
+Details at : https://medium.com/@megatron.web3/fair-real-estate-bid-ethereum-web3-dapp-db29a5f5f735
 
 ## Contract
 At the heart of this is a solidity contract(RealEstateBid.sol) to enable biiding.
